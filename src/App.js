@@ -15,7 +15,7 @@ function App() {
             .get('https://jsonplaceholder.typicode.com/albums?_embed=photos&_expand=user&_limit=10')
             .then(({ data }) => {
                 setAlbums(data);
-                // setIsLoaded(true);
+                setIsLoaded(true);
             });
     }, []);
 
