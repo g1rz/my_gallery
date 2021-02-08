@@ -6,17 +6,24 @@
     margin-bottom: 20px
 
 .album
+    display: block
     max-width: 300px
     border: 1px solid #ccc
     height: 100%
     margin: 0 auto
+    color: $black
+    text-decoration: none
+    transition: 0.3s ease
+    &:hover
+        color: $mainColor
+        .album
+            &__img
+                transform: scale(1.1)
     &__img-wrap
         display: block
         height: 150px
         overflow: hidden
-        &:hover
-            .album__img
-                transform: scale(1.1)
+
     &__img
         width: 100%
         height: 100%
@@ -26,12 +33,6 @@
         position: relative
         padding: 10px
         height: calc(100% - 150px)
-
-    &__title-link
-        text-decoration: none
-        color: $black
-        &:hover
-            color: $mainColor
 
     &__count
         margin-left: 5px
