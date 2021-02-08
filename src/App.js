@@ -24,4 +24,3 @@ function App() {
 
 export default App;
 
-// https://jsonplaceholder.typicode.com/albums?_embed=photos&_expand=user&_limit=10
