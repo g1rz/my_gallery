@@ -6,7 +6,7 @@ import './App.sass';
 
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
-import Albums from './pages/Albums/Albums';
+import UserAlbums from './pages/UserAlbums/UserAlbums';
 
 function App() {
     
@@ -14,7 +14,8 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <Route exact path="/" component={Albums} />
+            <Route exact path="/" component={Home} />
+            <Route path="/user/:id" component={UserAlbums} />
         </div>
     );
 }

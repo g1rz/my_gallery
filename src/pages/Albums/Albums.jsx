@@ -16,7 +16,6 @@ const Albums = () => {
             .then(({ data }) => {
                 setAlbums(data);
                 setIsLoaded(true);
-                console.log(data);
             });
     }, []);
 
