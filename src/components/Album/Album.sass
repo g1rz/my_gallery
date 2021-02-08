@@ -1,0 +1,51 @@
+@import '../../_variables.sass'
+
+.album-wrap
+    width: 25%
+    padding: 0 15px
+    margin-bottom: 20px
+
+.album
+    max-width: 300px
+    border: 1px solid #ccc
+    height: 100%
+    margin: 0 auto
+    &__img-wrap
+        display: block
+        height: 150px
+        overflow: hidden
+        &:hover
+            .album__img
+                transform: scale(1.1)
+    &__img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        transition: 0.3s ease
+    &__body
+        position: relative
+        padding: 10px 10px 30px
+        height: calc(100% - 150px)
+
+    &__title-link
+        text-decoration: none
+        color: $black
+        &:hover
+            color: $mainColor
+
+    &__author
+        position: absolute
+        bottom: 10px
+        right: 10px
+
+@media (max-width: 991px)
+    .album-wrap
+        width: 33.33%
+
+@media (max-width: 768px)
+    .album-wrap
+        width: 50%
+
+@media (max-width: 500px)
+    .album-wrap
+        width: 100%
