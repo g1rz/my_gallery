@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Album.sass'
 
-const Album = ({ id, cover, title, user, photosCount }) => {
+const Album = ({ id, cover, title, photosCount }) => {
     return (
         <div className="album-wrap">
             <div className="album" key={id}>
@@ -15,7 +15,7 @@ const Album = ({ id, cover, title, user, photosCount }) => {
                         <span className="album__count">({photosCount})</span>
                     </p>
 
-                    <a href="/" className="album__author">{user.name}</a>
+
                 </div>
             </div>
         </div>
