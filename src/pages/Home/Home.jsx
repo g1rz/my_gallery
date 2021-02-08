@@ -25,7 +25,8 @@ const Home = () => {
             : null;
 
     return (
-        <PageWrap title="Пользователи">
+        <PageWrap >
+            <h1>Пользователи</h1>
             {!isLoaded && <Loader />}
             {isLoaded && <div className="row">{usersList}</div>}
         </PageWrap>

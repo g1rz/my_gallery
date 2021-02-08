@@ -1,9 +1,8 @@
 
-const PageWrap = ({ title, children }) => {
+const PageWrap = ({ children }) => {
     return (
         <main>
             <div className="container">
-                {title && <h1>{title}</h1>}
                 {children}
             </div>
         </main>
