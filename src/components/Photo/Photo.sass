@@ -1,0 +1,16 @@
+.photo-wrap
+    flex: 1
+    padding: 0 5px
+
+.photo
+    display: block
+    margin-bottom: 10px
+    &__img
+        display: block
+        margin: 0 auto
+
+@media (max-width: 400px)
+    .photo-wrap
+        flex-basis: 50%
+    .photo__img
+        max-width: 100%
