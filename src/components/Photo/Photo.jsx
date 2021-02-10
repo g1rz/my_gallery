@@ -10,13 +10,13 @@ const Photo = ({ id, title, thumbnailUrl }) => {
             <Link
                 to={{
                     pathname: location.pathname,
-                    search: '?gallery=' + id,
+                    hash: '#gallery_' + id,
                 }}
                 className="photo">
                 <img src={thumbnailUrl} alt={title} className="photo__img" />
             </Link>
         </div>
-    )
-}
+    );
+};
 
-export default Photo
+export default Photo;
