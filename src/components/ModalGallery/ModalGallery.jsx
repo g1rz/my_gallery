@@ -20,7 +20,7 @@ const ModalGallery = ({ photos, activePhotoId }) => {
     let location = useLocation();
     let history = useHistory();
 
-    console.log(prevPhoto, activePhoto, nextPhoto);
+
 
     const handleOutsideclick = (e) => {
         const path = e.path || (e.composedPath && e.composedPath());
