@@ -13,16 +13,18 @@ const AlbumPage = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [activePhotoId, setActivePhotoId] = React.useState(false);
 
+    const [isError, setIsError] = React.useState(false);
+
     const { id } = useParams();
 
     const openModal = (activePhotoId) => {
         setActivePhotoId(activePhotoId);
         setIsModalOpen(true);
-    }
+    };
 
     const closeModal = () => {
         setIsModalOpen(false);
-    }
+    };
 
     React.useEffect(() => {
         setIsLoaded(false);
@@ -32,38 +34,46 @@ const AlbumPage = () => {
             .then(({ data }) => {
                 setAlbum(data);
                 setIsLoaded(true);
+            })
+            .catch((error) => {
+                setIsError(true);
+                console.error('Ошибка - ', error);
             });
     }, [id]);
 
-
-
     const photos = isLoaded
         ? album.photos.map((item) => (
-            <Photo
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                thumbnailUrl={item.thumbnailUrl}
-                openModal={openModal}
-
-            />
-        ))
+              <Photo
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  thumbnailUrl={item.thumbnailUrl}
+                  openModal={openModal}
+              />
+          ))
         : null;
 
     return (
         <PageWrap>
-            {!isLoaded && <Loader />}
-            {isLoaded && (
+            {!isLoaded && !isError && <Loader />}
+            {isLoaded && !isError && (
                 <React.Fragment>
                     <h1>
                         {album.user.name} - {album.title}
                     </h1>
+
                     <div className="row">{photos}</div>
                     {isModalOpen && (
-                        <ModalGallery photos={album.photos} activePhotoId={activePhotoId} closeModal={closeModal} />
+                        <ModalGallery
+                            photos={album.photos}
+                            activePhotoId={activePhotoId}
+                            closeModal={closeModal}
+                        />
                     )}
                 </React.Fragment>
             )}
+
+            {isError && <div className="error">Сожалеем, произошла ошибка</div>}
         </PageWrap>
     );
 };

@@ -9,6 +9,8 @@ const Home = () => {
     const [users, setUsers] = React.useState(null);
     const [isLoaded, setIsLoaded] = React.useState(false);
 
+    const [isError, setIsError] = React.useState(false);
+
     React.useEffect(() => {
         setIsLoaded(false);
         axios
@@ -16,21 +18,34 @@ const Home = () => {
             .then(({ data }) => {
                 setUsers(data);
                 setIsLoaded(true);
+            })
+            .catch((error) => {
+                setIsError(true);
+                console.error('Ошибка - ', error);
             });
     }, []);
 
-    const usersList =
-        isLoaded
-            ? users.map(item => <User key={item.id} id={item.id} name={item.name} username={item.username} albums={item.albums} />)
-            : null;
+    const usersList = isLoaded
+        ? users.map((item) => (
+              <User
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  username={item.username}
+                  albums={item.albums}
+              />
+          ))
+        : null;
 
     return (
-        <PageWrap >
+        <PageWrap>
             <h1>Пользователи</h1>
-            {!isLoaded && <Loader />}
-            {isLoaded && <div className="row">{usersList}</div>}
-        </PageWrap>
-    )
-}
+            {!isLoaded && !isError && <Loader />}
+            {isLoaded && !isError && <div className="row">{usersList}</div>}
 
-export default Home
+            {isError && <div className="error">Сожалеем, произошла ошибка</div>}
+        </PageWrap>
+    );
+};
+
+export default Home;
