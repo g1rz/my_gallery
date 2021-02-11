@@ -60,6 +60,7 @@ const ModalGallery = ({ photos, activePhotoId }) => {
             </div>
         </div>
     )
+
 }
 
 export default ModalGallery
