@@ -29,7 +29,7 @@ const ModalGallery = ({ photos, activePhotoId, closeModal }) => {
         let nextPhotoIndex = photos.findIndex(photo => photo.id === currentPhotoId) + 1;
         nextPhotoIndex = nextPhotoIndex > photos.length - 1 ? 0 : nextPhotoIndex;
 
-        setCurrentPhotoId(photos[nextPhotoIndex].id)
+        setCurrentPhotoId(photos[nextPhotoIndex].id);
     }
 
     React.useEffect(() => {
