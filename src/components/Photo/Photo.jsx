@@ -2,7 +2,6 @@ import React from 'react';
 // import { Link, useLocation } from 'react-router-dom';
 
 import './Photo.sass';
-import PhotoSkeleton from './PhotoSkeleton';
 
 const Photo = ({ id, title, thumbnailUrl, openModal }) => {
 
@@ -15,7 +14,7 @@ const Photo = ({ id, title, thumbnailUrl, openModal }) => {
     return (
         <div className="photo-wrap">
             <div className="photo" onClick={() => openModal(id)}>
-                {!isLoaded && <PhotoSkeleton />}
+                {!isLoaded && <div className="photo-skeleton"></div>}
                 <img src={thumbnailUrl} alt={title} className="photo__img" onLoad={() => handleLoad()} />
 
             </div>
