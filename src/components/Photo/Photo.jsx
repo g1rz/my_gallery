@@ -1,20 +1,15 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+// import { Link, useLocation } from 'react-router-dom';
 
 import './Photo.sass';
 
-const Photo = ({ id, title, thumbnailUrl }) => {
-    let location = useLocation();
+const Photo = ({ id, title, thumbnailUrl, openModal }) => {
+
     return (
         <div className="photo-wrap">
-            <Link
-                to={{
-                    pathname: location.pathname,
-                    hash: '#gallery_' + id,
-                }}
-                className="photo">
+            <div className="photo" onClick={() => openModal(id)}>
                 <img src={thumbnailUrl} alt={title} className="photo__img" />
-            </Link>
+            </div>
         </div>
     );
 };

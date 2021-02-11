@@ -10,13 +10,19 @@ import ModalGallery from '../../components/ModalGallery/ModalGallery';
 const AlbumPage = () => {
     const [album, setAlbum] = React.useState(null);
     const [isLoaded, setIsLoaded] = React.useState(false);
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [activePhotoId, setActivePhotoId] = React.useState(false);
 
     const { id } = useParams();
 
-    let query = new URLSearchParams(useLocation().search);
-    const openGalleryID = +query.get('gallery');
+    const openModal = (activePhotoId) => {
+        setActivePhotoId(activePhotoId);
+        setIsModalOpen(true);
+    }
 
-    console.log(useLocation().hash);
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
 
     React.useEffect(() => {
         setIsLoaded(false);
@@ -29,15 +35,19 @@ const AlbumPage = () => {
             });
     }, [id]);
 
+
+
     const photos = isLoaded
         ? album.photos.map((item) => (
-              <Photo
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  thumbnailUrl={item.thumbnailUrl}
-              />
-          ))
+            <Photo
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                thumbnailUrl={item.thumbnailUrl}
+                openModal={openModal}
+
+            />
+        ))
         : null;
 
     return (
@@ -49,8 +59,8 @@ const AlbumPage = () => {
                         {album.user.name} - {album.title}
                     </h1>
                     <div className="row">{photos}</div>
-                    {openGalleryID && (
-                        <ModalGallery photos={album.photos} activePhotoId={openGalleryID} />
+                    {isModalOpen && (
+                        <ModalGallery photos={album.photos} activePhotoId={activePhotoId} closeModal={closeModal} />
                     )}
                 </React.Fragment>
             )}
