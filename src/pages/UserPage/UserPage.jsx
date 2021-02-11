@@ -19,12 +19,18 @@ const UserAlbums = () => {
     React.useEffect(() => {
         setIsLoadedUser(false);
         setIsLoadedAlbums(false);
-        axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then(({ data }) => {
-            setUser(data);
-            setIsLoadedUser(true);
-        });
         axios
-            .get(`https://jsonplaceholder2.typicode.com/albums?userId=${id}&_embed=photos`)
+            .get(`https://jsonplaceholder.typicode.com/users/${id}`)
+            .then(({ data }) => {
+                setUser(data);
+                setIsLoadedUser(true);
+            })
+            .catch((error) => {
+                setIsError(true);
+                console.error('Ошибка - ', error);
+            });
+        axios
+            .get(`https://jsonplaceholder.typicode.com/albums?userId=${id}&_embed=photos`)
             .then(({ data }) => {
                 setAlbums(data);
                 setIsLoadedAlbums(true);
