@@ -29,3 +29,22 @@ h1
     font-size: 20px
     text-align: center
     color: $secondColor
+
+.btn-wrap
+    margin: 20px 0
+
+.btn
+    display: inline-block
+    padding: 5px 20px
+    background-color: #fff
+    border: 1px solid $mainColor
+    cursor: pointer
+    color: $mainColor
+    transition: 0.3s ease
+    &:hover
+        background-color: $mainColor
+        color: #fff
+    &:active
+        outline: none
+        background-color: darken($mainColor, 20%)
+        color: #fff

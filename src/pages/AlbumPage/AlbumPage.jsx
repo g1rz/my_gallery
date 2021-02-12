@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import PageWrap from '../../components/PageWrap/PageWrap';
 import Loader from '../../components/Loader/Loader';
 import Photo from '../../components/Photo/Photo';
@@ -16,6 +16,7 @@ const AlbumPage = () => {
     const [isError, setIsError] = React.useState(false);
 
     const { id } = useParams();
+    const history = useHistory();
 
     const openModal = (activePhotoId) => {
         setActivePhotoId(activePhotoId);
@@ -43,14 +44,14 @@ const AlbumPage = () => {
 
     const photos = isLoaded
         ? album.photos.map((item) => (
-              <Photo
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  thumbnailUrl={item.thumbnailUrl}
-                  openModal={openModal}
-              />
-          ))
+            <Photo
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                thumbnailUrl={item.thumbnailUrl}
+                openModal={openModal}
+            />
+        ))
         : null;
 
     return (
@@ -58,6 +59,9 @@ const AlbumPage = () => {
             {!isLoaded && !isError && <Loader />}
             {isLoaded && !isError && (
                 <React.Fragment>
+                    <div className="btn-wrap">
+                        <button className="btn" onClick={() => history.goBack()}>Назад</button>
+                    </div>
                     <h1>
                         {album.user.name} - {album.title}
                     </h1>

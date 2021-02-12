@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PageWrap from '../../components/PageWrap/PageWrap';
 import Loader from '../../components/Loader/Loader';
 import Album from '../../components/Album/Album';
@@ -15,6 +15,8 @@ const UserAlbums = () => {
     const [isError, setIsError] = React.useState(false);
 
     const { id } = useParams();
+
+    const history = useHistory();
 
     React.useEffect(() => {
         setIsLoadedUser(false);
@@ -43,14 +45,14 @@ const UserAlbums = () => {
 
     const albumsList = isLoadedAlbums
         ? albums.map((item) => (
-              <Album
-                  key={item.id}
-                  id={item.id}
-                  cover={item.photos[0]}
-                  photosCount={item.photos.length}
-                  title={item.title}
-              />
-          ))
+            <Album
+                key={item.id}
+                id={item.id}
+                cover={item.photos[0]}
+                photosCount={item.photos.length}
+                title={item.title}
+            />
+        ))
         : null;
 
     return (
@@ -58,8 +60,12 @@ const UserAlbums = () => {
             {(!isLoadedUser || !isLoadedAlbums) && !isError && <Loader />}
             {isLoadedUser && !isError && isLoadedAlbums && (
                 <React.Fragment>
+                    <div className="btn-wrap">
+                        <button className="btn" onClick={() => history.goBack()}>Назад</button>
+                    </div>
                     <h1>{user.name}</h1>
                     <div className="row">{albumsList}</div>
+
                 </React.Fragment>
             )}
 
